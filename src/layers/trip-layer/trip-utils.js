@@ -147,14 +147,7 @@ export function parseTripGeoJsonTimestamp(dataToFeature) {
 }
 
 function findMinFromSorted(list = []) {
-  let i = 0;
-  while (i < list.length) {
-    if (notNullorUndefined(list[i])) {
-      return list[i]
-    }
-    i++;
-  }
-  return null;
+  return list.find(notNullorUndefined) || null;
 }
 
 function findMaxFromSorted(list = []) {
@@ -175,6 +168,6 @@ export function getAnimationDomainFromTimestamps(dataToTimeStamp = []) {
       accu[1] = Math.max(accu[1], findMaxFromSorted(tss));
       return accu;
     },
-    [Number(Infinity), -Infinity]
+    [Infinity, -Infinity]
   );
 }
